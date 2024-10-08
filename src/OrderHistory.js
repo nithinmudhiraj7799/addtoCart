@@ -19,16 +19,28 @@ const OrderHistory = ({ orders }) => {
               <p>Time: {order.time}</p>
               <p className="font-semibold">Dishes:</p>
               {Array.isArray(order.dishes) && order.dishes.length > 0 ? (
-                <ul className="list-disc ml-4">
-                  {order.dishes.map((dish, idx) => (
-                    <li key={idx}>
-                      {dish.dish.name} - ${dish.dish.price} {/* Adjusted here */}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No dishes found for this order.</p>
-              )}
+  <div>
+    <ul className="list-disc ml-4">
+      {order.dishes.map((dish, idx) => (
+        <li key={idx}>
+          {dish.dish.name} - ${dish.dish.price.toFixed(2)} x {dish.quantity} 
+        </li>
+      ))}
+    </ul>
+    <div className="mt-4">
+   
+      <p>Total Items: {order.dishes.reduce((total, dish) => total + dish.quantity, 0)}</p>
+      <p>
+        Total Price: $
+        {order.dishes.reduce((total, dish) => total + (dish.dish.price * dish.quantity), 0).toFixed(2)}
+      </p>
+    </div>
+  </div>
+) : (
+  <p>No dishes found for this order.</p>
+)}
+
+
             </li>
           ))}
         </ul>

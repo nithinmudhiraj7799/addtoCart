@@ -82,7 +82,7 @@ const Menu = ({ dishes, orders, setOrders, setDishes }) => {
             <img src={dish.image_url} alt={dish.name} className="w-full h-48 object-cover rounded-md mb-2" />
             <h3 className="font-semibold">{dish.name}</h3>
             <p className="text-gray-600">${dish.price}</p>
-            <p className="text-gray-500">Available: {dish.available_quantity}</p>
+            <p className="text-gray-500">Available: {dish.available_quantity? dish.available_quantity  :" not available"}</p>
             {dish.available_quantity > 0 && (
               <div>
                 <button 
